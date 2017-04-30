@@ -16,7 +16,6 @@ car_url = 'http://wallpapercave.com/cool-car-background-wallpapers'
 page = urllib2.urlopen(car_url).read()
 
 #Grab pictires
-
 reg = r'src="(http.+?\.jpg)"'
 imgre = re.compile(reg)
 imglist_d = imgre.findall(page)
