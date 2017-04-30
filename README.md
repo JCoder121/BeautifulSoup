@@ -1,2 +1,2 @@
-# BeautifulSoupCars
+# BeautifulSoup
 Webpage image grabber
