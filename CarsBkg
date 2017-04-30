@@ -1,0 +1,48 @@
+# import libraries
+import urllib
+import urllib2  
+from bs4 import BeautifulSoup
+import time, sys
+import re
+import csv  
+from datetime import datetime  
+
+#file path where you want the pictures
+file_dir = '/Users/jeffrey/Documents/Python27/pictures/cars/'
+#file_dir = '/Users/jeffrey/Documents/Python27/'
+
+# specify the url
+car_url = 'http://wallpapercave.com/cool-car-background-wallpapers'
+page = urllib2.urlopen(car_url).read()
+
+#Grab pictires
+
+reg = r'src="(http.+?\.jpg)"'
+imgre = re.compile(reg)
+imglist_d = imgre.findall(page)
+
+#print imglist_d
+#sys.exit()
+
+imglist = list(set(imglist_d))
+print imglist
+
+#start point
+img_s_list = imglist[15:]
+
+#sys.exit()
+
+x = 15
+#Track progress on console
+print "Spider ready..."
+for imgurl in img_s_list:
+    file_name = file_dir + ('%s.jpg' %x)
+
+    print "Downloading...", imgurl
+    data = urllib2.urlopen(imgurl).read()
+
+    f = open(file_name, 'wb+')
+    print "Saving...", file_name
+    f.write(data)
+    f.close()
+    x = x + 1
